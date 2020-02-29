@@ -12,7 +12,7 @@ onready var step = $TileMap.get_cell_size()
 onready var endButton = $EndTurn
 var ennemiesCount = 0 
 var pool = FighterLib.new() 
-var ennemyPool = EnnemyLib.new({"Knight":2,"SimpleBlue":4,"SimpleRed":3})
+var ennemyPool
 var mapState = {}
 var fighterSelected = null
 var currentPhase = "pick" setget set_phase
@@ -47,6 +47,7 @@ func init_wall():
 			mapState[cell] = {}
 
 func init_ennemies():
+	ennemyPool = EnnemyLib.new(GameState.get_ennemiesPool())
 	var ennemy = ennemyPool.spawn()
 	add_ennemy(ennemy,GameState.get_cell_init_ennemies())
 
@@ -80,8 +81,6 @@ func on_fighter_picked(_event,fighter):
 		show_match_on_cell(fighter.color,fighter.clas,fighter.race)
 	elif currentPhase == "keep":
 		endTurn()
-		
-#	addLog("Prêt au combat !")
 	
 func _ready():
 	var _connected = statResolver.connect("score_modified",self,"on_score_modified")

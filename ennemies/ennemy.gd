@@ -32,10 +32,8 @@ func _init(nname,nstats):
 	stats = nstats.duplicate()
 	hp = stats.hp
 	var clickZone = Control.new()
-	print(ennemySprite.texture.get_size())
 	clickZone.set_size(Vector2(50,50))
 	add_child(clickZone)
-#	clickz = clickZone.get_name()
 	clickZone.connect("mouse_entered",self,"on_hover")
 	clickZone.connect("mouse_exited",self,"on_hover_end")
 
@@ -54,7 +52,6 @@ func on_hover_end():
 		
 func _ready():
 	add_to_group("ENNEMIES")
-#	get_node(clickz).set_size(sprite.texture.get_size())
 
 func get_cellPosition():
 	return cellPosition

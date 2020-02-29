@@ -5,14 +5,17 @@ const tab = "------"
 var final_score = 0
 
 var _config = {
-	"nb_init_ennemies" : 3,
+	"ennemiesPool" : {"Knight":2,"SimpleBlue":4,"SimpleRed":3},
 	"cell_init_ennemies" : Vector2(11,13),
 	"cell_princess" : Vector2(11,3),
 	"size_hand" : 3
 }
 
-func get_nb_init_ennemies():
-	return _config.nb_init_ennemies
+func get_ennemiesPool():
+	return _config.ennemiesPool
+
+func set_ennemiesPool(ep):
+	_config.ennemiesPool = ep
 
 func get_cell_init_ennemies():
 	return _config.cell_init_ennemies

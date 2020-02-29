@@ -1,0 +1,9 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://fonts/orange juice 2.0.ttf" type="DynamicFontData" id=1]
+
+
+[resource]
+size = 30
+outline_color = Color( 0.909804, 0.109804, 0.109804, 1 )
+font_data = ExtResource( 1 )

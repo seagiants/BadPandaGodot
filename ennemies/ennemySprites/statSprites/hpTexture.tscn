@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/heart2.png" type="Texture" id=1]
+
+[node name="hpTexture" type="TextureRect"]
+margin_left = 31.108
+margin_top = 5.0
+margin_right = 61.108
+margin_bottom = 31.0
+rect_clip_content = true
+hint_tooltip = " hp"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

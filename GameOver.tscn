@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/font_old_school.tres" type="DynamicFont" id=1]
+[ext_resource path="res://GameOver.gd" type="Script" id=2]
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 302.844
+margin_top = 264.196
+margin_right = 725.844
+margin_bottom = 346.196
+custom_fonts/normal_font = ExtResource( 1 )
+text = "GAME OVER !!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+margin_left = 429.495
+margin_top = 336.568
+margin_right = 852.495
+margin_bottom = 418.568
+custom_fonts/normal_font = ExtResource( 1 )
+text = "Score :"
+__meta__ = {
+"_edit_use_anchors_": false
+}

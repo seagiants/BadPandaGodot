@@ -154,10 +154,12 @@ func resolve(fighter,cell):
 		
 func remove_ennemy(ennemy):
 		mapState[ennemy.cellPosition].erase("content")
+		ennemy.show_death()
 		ennemy.infoNode.queue_free()
-#		$BottomBox.get_node(ennemy.infoNode).queue_free()
+		ennemy.add_to_group("DEADS")
+		ennemy.remove_from_group("ENNEMIES")
 		GameState.final_score += 1
-		ennemy.queue_free()
+#		ennemy.queue_free()
 
 func to_int_index(vect_index):
 	return str(vect_index[0])+"-"+str(vect_index[1])
@@ -226,6 +228,8 @@ func endTurn():
 	fighterSelected = null
 	hide_matches()
 	get_tree().call_group("ENNEMIES","move")
+	for deads in get_tree().get_nodes_in_group("DEADS"):
+		deads.queue_free()
 	if ennemyPool.count() > 0:
 		var ennemy = ennemyPool.spawn()
 		add_ennemy(ennemy,GameState.get_cell_init_ennemies())

@@ -12,6 +12,7 @@ var hp setget set_hp, get_hp
 var ennemyName
 #Name of the corresponding info node, used to hide it when ennemy dies
 var infoNode
+var tweenNode
 #Sprite of the ennemy
 onready var sprite
 
@@ -30,6 +31,9 @@ func _init(nname,nstats):
 	add_child(ennemySprite)
 	sprite = ennemySprite
 	ennemyName = nname
+	var tween = Tween.new()
+	add_child(tween)
+	tweenNode = tween
 	stats = nstats.duplicate()
 	hp = stats.hp
 	var clickZone = Control.new()
@@ -38,6 +42,13 @@ func _init(nname,nstats):
 	add_child(clickZone)
 	clickZone.connect("mouse_entered",self,"on_hover")
 	clickZone.connect("mouse_exited",self,"on_hover_end")
+
+func show_death():
+	var start_color = Color(1.0, 1.0, 1.0, 1.0)
+	var end_color = Color(1.0, 1.0, 1.0, 0.0)
+	tweenNode.interpolate_property(self, "modulate", start_color, end_color, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	if not tweenNode.is_active():
+			tweenNode.start()
 
 func set_hp(nhp):
 	hp = nhp

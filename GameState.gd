@@ -5,7 +5,7 @@ const tab = "------"
 var final_score = 0
 
 var _config = {
-	"ennemiesPool" : {"Knight":2,"SimpleBlue":4,"SimpleRed":3},
+	"ennemiesPool" : {"Knight":2,"SimpleBlue":4,"SimpleRed":4},
 	"cell_init_ennemies" : Vector2(11,13),
 	"cell_princess" : Vector2(11,3),
 	"size_hand" : 3,

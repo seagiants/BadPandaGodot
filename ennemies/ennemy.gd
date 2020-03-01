@@ -13,7 +13,7 @@ var ennemyName
 #Name of the corresponding info node, used to hide it when ennemy dies
 var infoNode
 #Sprite of the ennemy
-onready var sprite = get_child(0)
+onready var sprite
 
 var clickz
 #Fired each time cellPosition is setted.
@@ -28,11 +28,13 @@ signal ennemy_hovered_end(ennemy)
 func _init(nname,nstats):
 	var ennemySprite = load("res://ennemies/ennemySprites/"+nname+".tscn").instance()
 	add_child(ennemySprite)
+	sprite = ennemySprite
 	ennemyName = nname
 	stats = nstats.duplicate()
 	hp = stats.hp
 	var clickZone = Control.new()
-	clickZone.set_size(Vector2(50,50))
+	clickZone.set_size(GameState.get_cell_size())
+	clickZone.set_position(-GameState.get_cell_size()/2)
 	add_child(clickZone)
 	clickZone.connect("mouse_entered",self,"on_hover")
 	clickZone.connect("mouse_exited",self,"on_hover_end")

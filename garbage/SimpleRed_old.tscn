@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/Enemy 02-1.png" type="Texture" id=1]
+
+[node name="SimpleRed" type="Sprite"]
+modulate = Color( 1, 0, 0, 1 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 3
+frame = 9

@@ -4,7 +4,7 @@ signal score_modified(stat,new_score)
 
 func resolve_stat(stats,stat_name,score):
 	var f = funcref(self,"resolve_"+stat_name)
-	print(stat_name)
+#	print(stat_name)
 	return f.call_func(score,stats)
 	
 func resolve_protection(score,color):

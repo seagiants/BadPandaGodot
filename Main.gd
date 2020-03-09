@@ -134,6 +134,7 @@ func resolve(fighter,cell):
 	else:
 		addLog(tab+"Score "+str(score_int)+" :  "+str(score.color.type)+":"+str(score.color.value)+"/"
 			+str(score.clas.type)+":"+str(score.clas.value)+"/"+str(score.race.type)+":"+str(score.race.value))
+		comboResolver.match_combo(score)
 		var ennemies = get_tree().get_nodes_in_group("ENNEMIES")	
 		if ennemies.size() == 0:
 	#		addLog("Y a personne sur qui taper ??'")

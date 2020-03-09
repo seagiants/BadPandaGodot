@@ -48,6 +48,7 @@ func _init(ncolor,nclas,nrace):
 	clickZone.set_size(Vector2(64,64))
 	add_child(clickZone)
 	clickZone.connect("gui_input",self,"on_click")
+	clickZone.set_mouse_filter(1)
 	
 func _ready():
 #	get_panel("Blue","Bo")
@@ -61,7 +62,7 @@ func on_click(event):
 		emit_signal("fighter_selected",self,self)
 
 #Récupérer les style_box semble buggé. On récupère un StyleBoxTexture au lieu d'une Flat, impossible d'en définir la couleur...
-func get_panel(ncolor):
+static func get_panel(ncolor):
 	var ocolor = colorPattern[ncolor]
 	var panel = Panel.new()
 	panel.set_size(Vector2(32,32))
@@ -69,12 +70,17 @@ func get_panel(ncolor):
 	style.set_bg_color(ocolor)
 	style.set_corner_radius_all(4)
 	panel.set("custom_styles/panel",style)
-#	var style = load("res://fighterSprites/FighterPanel.tres").new()
-#	style.set_bg_color(colorPattern[color])
-#	panel.set("custom_styles/panel",style)
 	return panel
 
-
+func set_panel(npanel):
+	colorSprite.queue_free()
+	colorSprite = npanel
+	var cont = npanel.get_parent()
+	cont.remove_child(npanel)   
+	cont.queue_free()
+	add_child(npanel)
+	move_child(npanel,0)
+	
 func get_sprite(carac):
 	if carac == "Sword":
 		return sword.instance()

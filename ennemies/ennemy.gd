@@ -78,7 +78,7 @@ func move():
 	var newCell = cellPosition + Vector2(0,-1)
 	var newPosition = sprite.get_global_position() + Vector2(0,-step[1])
 	tweenNode.interpolate_property(self, "position", get_position(), newPosition, 0.9, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	if sprite.get_node("AnimationPlayer") != null:
+	if sprite.has_node("AnimationPlayer"):
 		sprite.get_node("AnimationPlayer").play("walk_up")
 	if not tweenNode.is_active():
 			tweenNode.start()

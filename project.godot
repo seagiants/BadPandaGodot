@@ -24,6 +24,7 @@ GameState="*res://GameState.gd"
 EnnemyLib="*res://ennemies/ennemyLib.gd"
 statResolver="*res://ennemies/ennemyStats/statResolver.gd"
 scoreResolver="*res://fighters/scoreResolver.gd"
+comboResolver="*res://fighters/fighterCombo/comboResolver.gd"
 
 [rendering]
 

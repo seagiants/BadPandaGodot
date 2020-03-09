@@ -84,8 +84,9 @@ func on_fighter_picked(_event,fighter):
 	
 func _ready():
 	var _connected = statResolver.connect("score_modified",self,"on_score_modified")
-	_connected = $EndTurn.connect("pressed",self,"on_click_endTurn")
-	map.connect("click_on_map",self,"on_click_on_map")
+	_connected = endButton.connect("pressed",self,"on_click_endTurn")
+	_connected = map.connect("click_on_map",self,"on_click_on_map")
+	_connected = comboResolver.connect("combo_matched",self,"on_combo_matched")
 	init_wall()
 	init_ennemies()
 	init_hand()
@@ -100,6 +101,12 @@ func on_score_modified(stat,new_score):
 	addLog(text)
 	text =  tab + tab + to_log(new_score)
 	addLog(text)
+
+func on_combo_matched(combo):
+	var tab = GameState.tab
+	var text = tab + "Combo : "+combo.props.comboName
+	addLog(text)
+	
 
 func to_log(score):
 		var score_int = scoreResolver.get_score_int(score)

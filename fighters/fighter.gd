@@ -72,16 +72,55 @@ static func get_panel(ncolor):
 	panel.set("custom_styles/panel",style)
 	return panel
 
+func _set_layout(nlayout):
+	if nlayout.is_inside_tree():
+		var cont = nlayout.get_parent()
+		cont.remove_child(nlayout)   
+		cont.queue_free()
+		nlayout.set_position(Vector2(0,0))
+	add_child(nlayout)
+
 func set_panel(npanel):
-	colorSprite.queue_free()
+	if colorSprite != null:
+		colorSprite.queue_free()
 	colorSprite = npanel
-	var cont = npanel.get_parent()
-	cont.remove_child(npanel)   
-	cont.queue_free()
-	add_child(npanel)
+	_set_layout(npanel)
+#	if npanel.is_inside_tree():
+#		var cont = npanel.get_parent()
+#		cont.remove_child(npanel)   
+#		cont.queue_free()
+#	add_child(npanel)
 	move_child(npanel,0)
+	npanel.set_size(Vector2(32,32))
 	
-func get_sprite(carac):
+func set_race_sprite(nsprite):
+	if raceSprite != null:
+		raceSprite.queue_free()
+	raceSprite = nsprite
+#	if nsprite.is_inside_tree():
+#		var cont = nsprite.get_parent()
+#		cont.remove_child(nsprite)   
+#		cont.queue_free()
+#	add_child(nsprite)
+	_set_layout(nsprite)
+	raceSprite.centered = true
+	raceSprite.set_position(Vector2(10,14))
+#	move_child(npanel,0)
+
+func set_clas_sprite(nsprite):
+	if clasSprite != null:
+		clasSprite.queue_free()
+	clasSprite = nsprite
+#	if nsprite.is_inside_tree():
+#		var cont = nsprite.get_parent()
+#		cont.remove_chi+ld(nsprite)   
+#		cont.queue_free()
+#	add_child(nsprite)
+	_set_layout(nsprite)
+	clasSprite.centered = true
+	clasSprite.set_position(Vector2(26,14))
+	
+static func get_sprite(carac):
 	if carac == "Sword":
 		return sword.instance()
 	elif carac == "Bow":

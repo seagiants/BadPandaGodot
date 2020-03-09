@@ -11,7 +11,8 @@ func _ready():
 #	panel.set_size(Vector2(32,32))
 #	panel.set_mouse_filter(MOUSE_FILTER_PASS)
 #	cont.add_child(panel)
-	comboResolver.connect("combo_matched",self,"on_combo_matched")
+	if not(comboResolver.connect("combo_matched",self,"on_combo_matched")):
+		print("Impossible de connecter le comboresolver au Panel")
 #	add_combo(Combo.new({"color":"Yellow"}))
 #	add_combo(Combo.new({"color":"Red"}))
 #	add_combo(Combo.new({"color":"Green"}))

@@ -1,23 +1,41 @@
-extends Container
+extends PanelContainer
 
 const Fighter = preload("res://fighters/fighter.gd")
 
 var props
-
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
 func _init(nprops):
-	if nprops.color:
-		set_custom_minimum_size(Vector2(32,32))
-		var panel = Fighter.get_panel(nprops.color)
-		props = nprops
-		panel.set_custom_minimum_size(Vector2(32,32))
-		panel.set_size(Vector2(32,32))
-		panel.set_mouse_filter(MOUSE_FILTER_PASS)
-		add_child(panel)
-
+	size_flags_horizontal = 0
+	size_flags_vertical = 0
+	var ncombo
+	props = nprops
+	set_custom_minimum_size(Vector2(32,32))
+	if nprops.has("color"):
+#		set_custom_minimum_size(Vector2(32,32))
+		ncombo = Fighter.get_panel(nprops.color)
+#		props = nprops
+#		nprops.set_custom_minimum_size(Vector2(32,32))
+#		ncombo.set_size(Vector2(32,32))
+		ncombo.set_mouse_filter(MOUSE_FILTER_PASS)
+#		add_child(panel)
+	if nprops.has("clas"):
+#		set_custom_minimum_size(Vector2(32,32))
+		ncombo = Fighter.get_sprite(nprops.clas)
+		ncombo.centered = false
+		ncombo.set_position(Vector2(4,4))
+#		props = nprops
+#		sprite.set_mouse_filter(MOUSE_FILTER_PASS)
+#		add_child(sprite)
+	if nprops.has("race"):
+#		set_custom_minimum_size(Vector2(32,32))
+		ncombo = Fighter.get_sprite(nprops.race)
+		ncombo.centered = false
+		ncombo.set_position(Vector2(4,4))
+	add_child(ncombo)
+		
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -25,7 +43,14 @@ func _ready():
 func get_drag_data(_pos):
 	#Create a copy of the dragged item to show the drag
 	var ei = self.get_child(0).duplicate()
-	set_drag_preview(ei)
+	var cont = Container.new()
+#	if props.has("color"):
+#		cont = Container.new()
+#	else:
+#		cont = PanelContainer.new()
+	cont.add_child(ei)
+	print(ei)
+	set_drag_preview(cont)
 	return self
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

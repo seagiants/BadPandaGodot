@@ -25,6 +25,7 @@ var race
 var raceSprite
 var clasSprite
 var colorSprite
+var clickedPanel
 var onMap
 
 signal fighter_selected(fighter)
@@ -46,6 +47,15 @@ func _init(ncolor,nclas,nrace):
 	clasSprite.set_position(Vector2(26,14))
 	var clickZone = Control.new()
 	clickZone.set_size(Vector2(64,64))
+	var clicked = Panel.new()
+	clicked.set_size(Vector2(32,32))
+	var style = StyleBoxFlat.new()
+	style.set_bg_color(Color(1,1,1,0.5))
+	style.set_corner_radius_all(4)
+	clicked.set("custom_styles/panel",style)
+	add_child(clicked)
+	clickedPanel = clicked
+	clickedPanel.hide()
 	add_child(clickZone)
 	clickZone.connect("gui_input",self,"on_click")
 	clickZone.set_mouse_filter(1)
@@ -85,11 +95,6 @@ func set_panel(npanel):
 		colorSprite.queue_free()
 	colorSprite = npanel
 	_set_layout(npanel)
-#	if npanel.is_inside_tree():
-#		var cont = npanel.get_parent()
-#		cont.remove_child(npanel)   
-#		cont.queue_free()
-#	add_child(npanel)
 	move_child(npanel,0)
 	npanel.set_size(Vector2(32,32))
 	

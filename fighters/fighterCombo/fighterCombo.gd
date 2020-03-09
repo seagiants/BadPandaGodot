@@ -14,23 +14,13 @@ func _init(nprops):
 	props = nprops
 	set_custom_minimum_size(Vector2(32,32))
 	if nprops.has("color"):
-#		set_custom_minimum_size(Vector2(32,32))
 		ncombo = Fighter.get_panel(nprops.color)
-#		props = nprops
-#		nprops.set_custom_minimum_size(Vector2(32,32))
-#		ncombo.set_size(Vector2(32,32))
 		ncombo.set_mouse_filter(MOUSE_FILTER_PASS)
-#		add_child(panel)
 	if nprops.has("clas"):
-#		set_custom_minimum_size(Vector2(32,32))
 		ncombo = Fighter.get_sprite(nprops.clas)
 		ncombo.centered = false
-		ncombo.set_position(Vector2(4,4))
-#		props = nprops
-#		sprite.set_mouse_filter(MOUSE_FILTER_PASS)
-#		add_child(sprite)
+		ncombo.set_position(Vector2(8,8))
 	if nprops.has("race"):
-#		set_custom_minimum_size(Vector2(32,32))
 		ncombo = Fighter.get_sprite(nprops.race)
 		ncombo.centered = false
 		ncombo.set_position(Vector2(4,4))

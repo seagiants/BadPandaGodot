@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/sword.png" type="Texture" id=1]
 [ext_resource path="res://assets/upg_sword.png" type="Texture" id=2]
@@ -10,6 +10,13 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0.486275 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="Fighter" type="Panel"]
 margin_right = 32.0
@@ -35,3 +42,11 @@ texture = ExtResource( 1 )
 position = Vector2( 26.1511, 14.853 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 32.0
+margin_bottom = 32.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

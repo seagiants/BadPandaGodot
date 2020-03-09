@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/Dungeon_Tileset.png" type="Texture" id=1]
 [ext_resource path="res://TileMap.gd" type="Script" id=2]
@@ -71,6 +71,12 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxFlat" id=4]
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
 
@@ -122,15 +128,16 @@ __meta__ = {
 }
 
 [node name="ComboPanel" type="Panel" parent="."]
-margin_left = 457.0
-margin_top = 39.0
-margin_right = 595.0
-margin_bottom = 430.0
+margin_left = 454.784
+margin_top = 290.524
+margin_right = 592.784
+margin_bottom = 446.524
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 2 )
 script = ExtResource( 3 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -138,7 +145,7 @@ __meta__ = {
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 132.0
-margin_bottom = 386.0
+margin_bottom = 147.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -166,7 +173,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
+[node name="HandTitlePanel" type="Panel" parent="."]
 margin_left = 110.0
 margin_top = 454.0
 margin_right = 385.0
@@ -176,7 +183,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Label" type="Label" parent="HandTitlePanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 3.0
@@ -188,6 +195,18 @@ size_flags_vertical = 0
 align = 1
 valign = 1
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ComboDict" type="Panel" parent="."]
+margin_left = 449.0
+margin_top = 39.0
+margin_right = 596.0
+margin_bottom = 282.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

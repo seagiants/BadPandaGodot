@@ -9,19 +9,28 @@ const TextProvider = preload("res://textProvider.gd")
 onready var map = $TileMap
 onready var hand = $HandPanel
 onready var step = $TileMap.get_cell_size()
+onready var handLabel = $HandTitlePanel/Label
 onready var endButton = $EndTurn
 var ennemiesCount = 0 
 var pool = FighterLib.new() 
 var ennemyPool
 var mapState = {}
-var fighterSelected = null
+var fighterSelected = null setget set_fighter_selected
 var currentPhase = "pick" setget set_phase
 
-
+func set_fighter_selected(nfight):
+	if fighterSelected != null :
+		fighterSelected.clickedPanel.hide()
+	fighterSelected = nfight
+	if nfight != null:
+		fighterSelected.clickedPanel.show()
+		
+	
+	
 func set_phase(nphase):
 	endButton.visible = !endButton.visible
 	currentPhase = nphase
-	$Panel/Label.set_text(TextProvider.get_phase_text(nphase))
+	handLabel.set_text(TextProvider.get_phase_text(nphase))
 	if nphase == "keep":
 		hide_matches()
 
@@ -75,7 +84,10 @@ func init_hand(fighter_keeped = null):
 
 func on_fighter_picked(_event,fighter):
 	hide_matches()
-	fighterSelected = fighter
+	if self.fighterSelected == fighter :
+		self.fighterSelected = null
+		return
+	self.fighterSelected = fighter
 	if currentPhase == "pick":
 		get_tree().call_group("FIGHTERS","show_match",fighter.color,fighter.clas,fighter.race)
 		show_match_on_cell(fighter.color,fighter.clas,fighter.race)
@@ -121,11 +133,11 @@ func on_click_on_map(cell):
 		elif "wall" in mapState[cell]:
 			pass
 #			addLog(str(cell)+" : Ah non, je monte pas sur un mur !")
-		elif fighterSelected != null:		
+		elif self.fighterSelected != null:		
 			resolve(fighterSelected,cell)			
 			add_fighter(fighterSelected,cell)
 			self.currentPhase = "keep"
-			fighterSelected = null
+			self.fighterSelected = null
 #			endTurn()
 		else:
 			pass
@@ -233,7 +245,7 @@ func addLog(text):
 
 func endTurn():
 	init_hand(fighterSelected)
-	fighterSelected = null
+	self.fighterSelected = null
 	hide_matches()
 	get_tree().call_group("ENNEMIES","move")
 	for deads in get_tree().get_nodes_in_group("DEADS"):

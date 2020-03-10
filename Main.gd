@@ -253,7 +253,10 @@ func endTurn():
 	if ennemyPool.count() > 0:
 		var ennemy = ennemyPool.spawn()
 		add_ennemy(ennemy,GameState.get_cell_init_ennemies())
-		
+	if not(get_tree().has_group("ENNEMIES")):	
+			var _over = get_tree().change_scene("res://GameOver.tscn")	
+
+
 
 func get_score(cell,color,clas,race):
 	var score = {

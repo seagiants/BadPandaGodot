@@ -4,7 +4,7 @@ signal combo_matched(combo)
 
 func match_combo(score):
 	for key in score.keys():
-		if score[key].value >= 2:
+		if score[key].value >= 3:
 			var cName = score[key].type+"x3-Combo"
 			var props = {
 				key : score[key].type,

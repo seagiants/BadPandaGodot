@@ -52,7 +52,7 @@ func show_death():
 
 func set_hp(nhp):
 	hp = nhp
-	infoNode.labelHp.set_text(str(nhp))
+	infoNode.set_hp(str(nhp))
 
 func get_hp():
 	return hp
